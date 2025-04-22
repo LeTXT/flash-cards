@@ -1,0 +1,83 @@
+.swipe {
+    .CardInside {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        // flex-wrap: wrap;
+
+        gap: 10px;
+
+        text-align: center;
+
+        width: 250px;
+        height: 350px;
+
+        border-radius: 5px;
+
+        background-color: #CCC5B9;
+    
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+        position: absolute;
+        top: calc(50% - 350px/2);
+        right: calc(50% - 250px/2);
+
+        // bottom: -500px;
+
+        font-size: 40px;
+
+        h2 {
+            color: #252422;
+
+            margin: 0;
+
+            text-transform: capitalize;
+
+            font-size: 40px;
+        }
+
+        h3 {
+            color: #403D39;
+
+            margin: 0;
+
+            text-transform: capitalize;
+
+            transition: opacity .5s ease-in-out;
+
+            font-size: 40px;
+        }
+    
+    }
+
+}
+
+.answer {
+   
+    position: absolute;
+    bottom: calc(50% - 250px);
+    right: calc(50% - 125px);
+
+    padding: 10px;
+
+    border-radius: 5px;
+    border: #CCC5B9 2px solid;
+
+    font-size: 16px;
+    font-weight: 800;
+    color: #CCC5B9;
+
+    background-color: transparent;
+
+    transition: transform .1 ease-in-out;
+}
+
+.answer:active {
+    transform: scale(.9);
+}
+
+.show { opacity: 1; }
+
+.hidden { opacity: 0; }
