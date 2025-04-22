@@ -1,5 +1,5 @@
-import { wordArray, wordAndTranslate } from '../assets/dbWords'
-import { fromTo } from '../assets/dbFilter'
+import { wordArray } from '../assets/dbWords.ts'
+import { fromTo, wordAndTranslate } from '../assets/types.ts'
 
 import '../style/components/filter.scss'
 

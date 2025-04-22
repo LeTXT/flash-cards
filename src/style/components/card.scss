@@ -1,11 +1,9 @@
-.swipe {
-    .CardInside {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+@use '../../abstracts/index' as *;
 
-        // flex-wrap: wrap;
+.swipe {
+    user-select: none;
+    .CardInside {
+        @include flex(column);
 
         gap: 10px;
 
@@ -16,7 +14,7 @@
 
         border-radius: 5px;
 
-        background-color: #CCC5B9;
+        background-color: $ligth-color;
     
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 
@@ -29,7 +27,7 @@
         font-size: 40px;
 
         h2 {
-            color: #252422;
+            color: $grey;
 
             margin: 0;
 
@@ -39,7 +37,7 @@
         }
 
         h3 {
-            color: #403D39;
+            color: $ligth-grey;
 
             margin: 0;
 
@@ -47,7 +45,7 @@
 
             transition: opacity .5s ease-in-out;
 
-            font-size: 40px;
+            font-size: 90%;
         }
     
     }
@@ -60,14 +58,14 @@
     bottom: calc(50% - 250px);
     right: calc(50% - 125px);
 
-    padding: 10px;
+    padding: 10px 16px;
 
     border-radius: 5px;
-    border: #CCC5B9 2px solid;
+    border: $ligth-color 2px solid;
 
     font-size: 16px;
     font-weight: 800;
-    color: #CCC5B9;
+    color: $ligth-color;
 
     background-color: transparent;
 

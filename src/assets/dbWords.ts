@@ -1,7 +1,4 @@
-export interface wordAndTranslate {
-    word: string,
-    translate: string
-}
+import { wordAndTranslate } from "./types"
 
 // export const wordArray: wordAndTranslate[] = [
 //     { word: "the", translate: "o, a" },

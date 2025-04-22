@@ -1,22 +1,25 @@
+@use '../../abstracts/index' as *;
+
 .filterContainer {
 
     button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex();
+        user-select: none;
 
         padding: 5px;
 
         height: 20px;
 
-        border: 1px #CCC5B9 solid;
+        border: 1px $ligth-color solid;
         border-radius: 20px;
 
         position: initial;
 
-        color: #CCC5B9;
+        color: $ligth-color;
         font-weight: 700;
 
         background-color: transparent;
+
+        cursor: pointer;
     }
 }
