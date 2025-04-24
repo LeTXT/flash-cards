@@ -1,25 +1,85 @@
 @use '../../abstracts/index' as *;
 
-.filterContainer {
+.containerFilter {
+    @include flex(row, start, start);
+    position: absolute;
+    top: 0;
+    left: -200px;
 
-    button {
-        @include flex();
-        user-select: none;
+    z-index: 200;
 
-        padding: 5px;
+    width: 0;
+    height: 100%;
 
-        height: 20px;
+    padding: 0;
+    margin: 0;
 
-        border: 1px $ligth-color solid;
-        border-radius: 20px;
+    transition: left 0.5s ease-in-out, width .8s ease-in-out;
 
-        position: initial;
-
-        color: $ligth-color;
-        font-weight: 700;
-
-        background-color: transparent;
-
-        cursor: pointer;
+    .filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(auto-fill, 25px);
+        gap: 5px;
+    
+        align-items: start;
+    
+       
+        width: 150px;
+        height: 100%;
+    
+        padding: 16px;
+       
+    
+        background-color: $ligth-grey;
+    
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    
+        div {
+            margin: 0;
+        }
+    
+        input {
+            display: none;
+        } 
+        label {
+            @include flex();
+            user-select: none;
+        
+            padding: 5px;
+        
+            height: 12px;
+    
+            font-size: 12px;
+        
+            border: 1px $ligth-color solid;
+            border-radius: 20px;
+    
+            cursor: pointer;
+    
+            text-align: center;
+    
+            transition: all 0.3s ease;
+    
+            color: $ligth-color;
+        }
+        label:hover {
+            border-color: $grey;
+            color: $grey;
+        }
+    
+        input:checked + label {
+            border-color: $ligth-color;
+            background-color: $ligth-color;
+            color: $ligth-grey;
+    
+            font-weight: 700;
+        }
+    
     }
+}
+.showFilters {
+    left: 0;
+
+    width: 100%;
 }

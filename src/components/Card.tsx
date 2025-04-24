@@ -71,15 +71,22 @@ function Card({ item, id, setArray }: cardProps) {
                     <h2>{item.word}</h2>
 
                     <h3 className={state ? 'show' : 'hidden'}>{item.translate ? item.translate : 'Carregando...'}</h3>
+
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setState(true)
+                        }}
+                        className={`answer pressable ${!state ? 'show' : 'hidden'}`}
+                        // style={finalStyle}
+                        // disabled={id !== 0}
+                    >Answer</button>
                 </div>
+
+
 
             </TinderCard>
 
-            <button
-                onClick={() => setState(true)}
-                className={`answer ${id === 0 ? 'show' : 'hidden'}`}
-                disabled={id !== 0}
-            >Answer</button>
         </div>
 
     )
