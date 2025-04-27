@@ -1,37 +1,54 @@
 @use '../../abstracts/index' as *;
 
 .containerFilter {
-    @include flex(row, start, start);
+    @include flex(column, end);
     position: absolute;
-    top: 0;
-    left: -200px;
+    // top: 0;
+    // left: -200px;
+
+    bottom: -210px;
+    left: 0;
 
     z-index: 200;
 
-    width: 0;
-    height: 100%;
+    // width: 0;
+    // height: 100%;
+
+    width: 100%;
+    height: 0;
 
     padding: 0;
     margin: 0;
 
-    transition: left 0.5s ease-in-out, width .8s ease-in-out;
+    transition: bottom 0.5s ease-in-out, height .8s ease-in-out;
+
+    .handle {
+        height: 30px;
+        width: 90%;
+        background-color: black;
+    }
 
     .filters {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: repeat(auto-fill, 25px);
         gap: 5px;
     
         align-items: start;
+
+        box-sizing: border-box;
     
        
-        width: 150px;
-        height: 100%;
+        // width: 150px;
+        // height: 100%;
+        width: 100%;
+        height: 60%;
     
         padding: 16px;
        
     
         background-color: $ligth-grey;
+        background-color: #403d39e7;
     
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     
@@ -62,6 +79,7 @@
             transition: all 0.3s ease;
     
             color: $ligth-color;
+            background-color: $ligth-grey;
         }
         label:hover {
             border-color: $grey;
@@ -79,7 +97,8 @@
     }
 }
 .showFilters {
-    left: 0;
+    height: 100%;
 
-    width: 100%;
+    bottom: 0;
+    left: 0;
 }

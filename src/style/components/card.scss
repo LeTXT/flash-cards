@@ -3,7 +3,7 @@
 .swipe {
     user-select: none;
     .CardInside {
-        @include flex(column);
+        @include flex(column, space-between);
 
         gap: 10px;
 
@@ -26,52 +26,92 @@
 
         font-size: 40px;
 
-        h2 {
-            color: $grey;
+        .bgLight {
+            @include flex(row, center, end);
 
-            margin: 0;
+            box-sizing: border-box;
 
-            text-transform: capitalize;
+            height: 40%;
+            width: 335px;
 
-            font-size: 40px;
+            padding: 5px;
+
+            h2 {
+                color: $grey;
+    
+                margin: 0;
+    
+                text-transform: capitalize;
+    
+                font-size: 53px;
+            }
         }
 
-        h3 {
-            color: $ligth-grey;
 
-            margin: 0;
+        .bgGrey {
+            @include flex(row, center, start);
 
-            text-transform: capitalize;
+            box-sizing: border-box;
 
-            transition: opacity .5s ease-in-out;
+            height: 60%;
+            width: 335px;
 
-            font-size: 90%;
+            padding: 30px;
+
+            background: $grey;
+
+            border-radius: 0 0 3px 3px;
+
+            box-sizing: border-box;
+
+            h3 {
+                color: $ligth-color;
+    
+                margin: 0;
+    
+                text-transform: capitalize;
+    
+                transition: opacity .5s ease-in-out;
+    
+                font-size: clamp(24px, 90%, 54px);
+            }
+
+            .answer {
+   
+                position: absolute;
+                bottom: calc(50% - 65px);
+                // right: calc(50% - 150px);
+            
+                padding: 10px 16px;
+            
+                border: none;
+                width: 261px;
+                height: 90px;
+            
+                transition: transform .1 ease-in-out;
+            
+                z-index: 200;
+
+                background-color: #2A2927;
+
+                color: $ligth-color;
+                font-size: 32px;
+                font-weight: 700;
+
+                border-radius: 5px;
+            }
+            
+            .answer:active {
+                transform: scale(.9);
+            }
         }
+
     
     }
 
 }
 
-.answer {
-   
-    position: absolute;
-    bottom: calc(50% - 70px);
-    // right: calc(50% - 150px);
 
-    padding: 10px 16px;
-
-    border: none;
-    width: 300px;
-    height: 70px;
-
-    transition: transform .1 ease-in-out;
-
-    z-index: 200;
-}
-
-.answer:active {
-    transform: scale(.9);
-}
 
 .show { opacity: 1; }
 

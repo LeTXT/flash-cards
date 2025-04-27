@@ -8,8 +8,11 @@ import { styleType, wordAndTranslate } from '../assets/types';
 import { outOfFrame } from '../utils/outOfFrame';
 import { cardInicialize } from '../utils/cardInicialize';
 
-// component
+// libraries
 import TinderCard from 'react-tinder-card'
+
+// components
+import Speech from './Speech.tsx'
 
 // scss
 import '../style/components/card.scss'
@@ -68,19 +71,26 @@ function Card({ item, id, setArray }: cardProps) {
                 preventSwipe={['up', 'down']}
             >
                 <div className={'CardInside'} style={finalStyle}>
-                    <h2>{item.word}</h2>
+                    <Speech word={item.word} />
+                    <div className='bgLight'>
 
-                    <h3 className={state ? 'show' : 'hidden'}>{item.translate ? item.translate : 'Carregando...'}</h3>
+                        <h2>{item.word}</h2>
+                    </div>
 
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setState(true)
-                        }}
-                        className={`answer pressable ${!state ? 'show' : 'hidden'}`}
+                    <div className='bgGrey'>
+                        <h3 className={state ? 'show' : 'hidden'}>{item.translate ? item.translate : 'Carregando...'}</h3>
+
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                setState(true)
+                            }}
+                            className={`answer pressable ${!state ? 'show' : 'hidden'}`}
                         // style={finalStyle}
                         // disabled={id !== 0}
-                    >Answer</button>
+                        >Answer</button>
+
+                    </div>
                 </div>
 
 
