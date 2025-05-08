@@ -17,7 +17,7 @@ Aplicação web interativa de flashcards para memorização e aprendizado, feita
 
 ##📱 Design
 Interface pensada para dispositivos móveis, com paleta de cores minimalista e visual limpo:
-![Design Preview](https://github.com/LeTXT/flash-cards/raw/main/public/design-preview.png)
+![Design Preview](/public/design-preview.png)
 
 ## Instalação
 ### 1. Clone o repositório
