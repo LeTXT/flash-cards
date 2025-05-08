@@ -58,8 +58,9 @@ function Speech({word}: SpeechProps) {
             e.stopPropagation()
             handleSpeak()
         }}
+        aria-label='Ouvir'
         >
-            <HiOutlineVolumeUp size={30} color="#403D39"/>
+            <HiOutlineVolumeUp size={30} color="#403D39" />
         </button>
       </div>
     );

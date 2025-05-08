@@ -2,8 +2,7 @@
 import { useState } from 'react'
 
 // assets
-import { wordArray } from '../assets/dbWords'
-import { wordAndTranslate } from '../assets/types'
+import { interfaceCard } from '../assets/types'
 
 // icons
 import { BsFilterRight } from "react-icons/bs";
@@ -17,18 +16,7 @@ import '../style/page/deckView.scss'
 
 
 function DeckView() {
-    const storedValues = JSON.parse(localStorage.getItem('sliceValues') || 'null')
-
-    const [array, setArray] = useState<wordAndTranslate[]>(() => {
-        if (storedValues && Array.isArray(storedValues)) {
-            return wordArray.slice(storedValues[0], storedValues[1]);
-        } else {
-            console.log('local');
-
-            return wordArray.slice(0, 10);
-        }
-    })
-
+    const [array, setArray] = useState<interfaceCard[]>([])
     const [showFilter, setShowFilter] = useState<boolean>(false)
 
     return (
@@ -40,8 +28,6 @@ function DeckView() {
 
             <Filter setArray={setArray} setShowFilter={setShowFilter} showFilter={showFilter} />
 
-            {/* <FilterOptions /> */}
-
             <div>
                 {
                     array.slice(0, 5).map((item, index) =>
@@ -49,12 +35,11 @@ function DeckView() {
                             item={item}
                             id={index}
                             setArray={setArray}
-                            key={item.word + item.translate}
+                            key={item.front + item.back}
                         />
                     )
                 }
             </div>
-                {/* <button onClick={() => localStorage.removeItem('sliceValues')} className='remover'>remover</button> */}
         </div>
     )
 }

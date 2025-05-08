@@ -1,18 +1,13 @@
 @use '../../abstracts/index' as *;
 
-.containerFilter {
+.container-filter {
     @include flex(column, end);
     position: absolute;
-    // top: 0;
-    // left: -200px;
 
     bottom: -210px;
     left: 0;
 
     z-index: 200;
-
-    // width: 0;
-    // height: 100%;
 
     width: 100%;
     height: 0;
@@ -29,74 +24,85 @@
     }
 
     .filters {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: repeat(auto-fill, 25px);
-        gap: 5px;
-    
-        align-items: start;
+        @include flex(column, start);
 
         box-sizing: border-box;
     
-       
-        // width: 150px;
-        // height: 100%;
         width: 100%;
         height: 60%;
     
-        padding: 16px;
-       
+        padding: 16px;  
     
-        background-color: $ligth-grey;
         background-color: #403d39e7;
     
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    
-        div {
-            margin: 0;
+
+        .category-toggle {
+            @include flex(row, start);
+            gap: 10px;
+
+            margin-bottom: 10px;
+
+            width: 100%;
+
+            button {
+                background-color: $ligth-grey;
+                color: $ligth-color;
+
+                padding: 5px 12px;
+
+                transition: all .3s ease-in-out;
+
+                box-sizing: border-box;
+
+                font-size: 12px;
+            
+                border: 1px $ligth-color solid;
+                border-radius: 20px;
+
+                font-weight: 600;
+
+                cursor: pointer;
+            }
+            .selected {
+                background-color: $ligth-color;
+                color: $ligth-grey;
+            }
+            button:hover {
+                border: 1px solid $grey;
+                color: $grey;
+            }
+            button:active {
+                transform: scale(1);
+            }
         }
+
+        .english, .aws {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: repeat(auto-fill, 25px);
+            gap: 5px;
     
-        input {
-            display: none;
-        } 
-        label {
-            @include flex();
-            user-select: none;
-        
-            padding: 5px;
-        
-            height: 12px;
-    
-            font-size: 12px;
-        
-            border: 1px $ligth-color solid;
-            border-radius: 20px;
-    
-            cursor: pointer;
-    
-            text-align: center;
-    
-            transition: all 0.3s ease;
-    
-            color: $ligth-color;
-            background-color: $ligth-grey;
+            align-items: start;
+
+            width: 100%;
+            div {
+                margin: 0;
+                width: 100%;
+            }
         }
-        label:hover {
-            border-color: $grey;
-            color: $grey;
+
+        .aws {
+            label {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding: auto 1px;
+            }
         }
-    
-        input:checked + label {
-            border-color: $ligth-color;
-            background-color: $ligth-color;
-            color: $ligth-grey;
-    
-            font-weight: 700;
-        }
-    
     }
 }
-.showFilters {
+.show-filters {
     height: 100%;
 
     bottom: 0;

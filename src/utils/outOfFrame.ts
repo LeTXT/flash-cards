@@ -1,8 +1,8 @@
-import { wordAndTranslate } from "../assets/types.ts"
+import { interfaceCard } from "../assets/types.ts"
 
-export const outOfFrame = (swipedCard: wordAndTranslate, setArray: React.Dispatch<React.SetStateAction<wordAndTranslate[]>>) => {
+export const outOfFrame = (swipedCard: interfaceCard, setArray: React.Dispatch<React.SetStateAction<interfaceCard[]>>) => {
     setArray((prevArray) => {
-        const filtered = prevArray.filter(item => item.word !== swipedCard.word);
+        const filtered = prevArray.filter(item => item.front !== swipedCard.front);
         return [...filtered, swipedCard]; 
     });
 

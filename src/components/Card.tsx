@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from 'react';
 
 // assets
-import { styleType, wordAndTranslate } from '../assets/types';
+import { styleType, interfaceCard } from '../assets/types';
 
 // utils
 import { outOfFrame } from '../utils/outOfFrame';
@@ -10,6 +10,7 @@ import { cardInicialize } from '../utils/cardInicialize';
 
 // libraries
 import TinderCard from 'react-tinder-card'
+import { PiArrowClockwiseBold, PiArrowCounterClockwiseBold } from "react-icons/pi"
 
 // components
 import Speech from './Speech.tsx'
@@ -19,13 +20,14 @@ import '../style/components/card.scss'
 
 interface cardProps {
     id: number
-    item: wordAndTranslate
-    setArray: React.Dispatch<React.SetStateAction<wordAndTranslate[]>>
+    item: interfaceCard
+    setArray: React.Dispatch<React.SetStateAction<interfaceCard[]>>
 }
 
 function Card({ item, id, setArray }: cardProps) {
     const [state, setState] = useState<boolean>(false)
     const [baseStyle, setBaseStyle] = useState<styleType | undefined>(undefined)
+    const [rotate, setRotate] = useState<boolean>(false)
 
     useEffect(() => {
         const initialStyle = cardInicialize()
@@ -62,7 +64,7 @@ function Card({ item, id, setArray }: cardProps) {
             setState(false);
         }
     }, [id, state]);
-
+     
     return (
         <div style={{ zIndex: finalStyle.zIndex, position: 'absolute' }}>
             <TinderCard
@@ -70,26 +72,51 @@ function Card({ item, id, setArray }: cardProps) {
                 onCardLeftScreen={handleSwipe}
                 preventSwipe={['up', 'down']}
             >
-                <div className={'CardInside'} style={finalStyle}>
-                    <Speech word={item.word} />
-                    <div className='bgLight'>
+                <div className={`flip-card ${rotate ? 'rotate' : ''}`} style={finalStyle}>
 
-                        <h2>{item.word}</h2>
-                    </div>
+                    <div className="flip-card-inner">
+                        <div className="flip-card-front">
+                            {item.tag ? '' : <Speech word={item.front} />}
 
-                    <div className='bgGrey'>
-                        <h3 className={state ? 'show' : 'hidden'}>{item.translate ? item.translate : 'Carregando...'}</h3>
-
-                        <button
+                            <h2>
+                                {item.front.charAt(0).toUpperCase() + item.front.slice(1)}
+                            </h2>
+                            <button 
                             onClick={(e) => {
                                 e.stopPropagation()
-                                setState(true)
-                            }}
-                            className={`answer pressable ${!state ? 'show' : 'hidden'}`}
-                        // style={finalStyle}
-                        // disabled={id !== 0}
-                        >Answer</button>
-
+                                setRotate(true)
+                                }}
+                            onTouchStart={(e) => {
+                                e.stopPropagation();
+                                }}
+                            aria-label='Girar cartão para resposta'
+                            className='flip'
+                                >
+                                <PiArrowClockwiseBold size={30} color ='#403D39' />
+                               
+                            </button>
+                        </div>
+                        <div className="flip-card-back">
+                            <h3>
+                                {
+                                item.back.charAt(0).toUpperCase() + item.back.slice(1)
+                                }
+                            </h3>
+                            <button 
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                setRotate(false)
+                                }}
+                            onTouchStart={(e) => {
+                                e.stopPropagation();
+                                }}
+                            aria-label='Girar cartão para pergunta'
+                            className='flip'
+                                >
+                                <PiArrowCounterClockwiseBold size={30} color='#CCC5B9' />
+                                
+                            </button>
+                        </div>
                     </div>
                 </div>
 

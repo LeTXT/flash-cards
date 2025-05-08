@@ -1,6 +1,7 @@
-export interface wordAndTranslate {
-    word: string,
-    translate: string
+export interface interfaceCard {
+    front: string,
+    back: string,
+    tag?: string
 }
 
 export interface fromTo {
