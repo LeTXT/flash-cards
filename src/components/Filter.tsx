@@ -1,12 +1,18 @@
 // hook
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // array
 import { wordArray, awsQuestions } from '../assets/dbCard.ts'
 import { filters } from '../assets/dbFilter.ts'
 
+// utils
+import { handleClickGeneric } from '../utils/handleClick.ts'
+
+// components
+import GenericFilter from './GenericFilterProps.tsx'
+
 // type
-import { fromTo, interfaceCard } from '../assets/types.ts'
+import { interfaceCard } from '../assets/types.ts'
 
 // style
 import '../style/components/filter.scss'
@@ -37,6 +43,8 @@ function Filter({ setArray, setShowFilter, showFilter }: FilterProps) {
         }
         else {
             setArray(wordArray.slice(0, 10))
+            setSelected(0)
+            setCategory('english')
         }
     }, [])
 
@@ -45,28 +53,6 @@ function Filter({ setArray, setShowFilter, showFilter }: FilterProps) {
         setSelected(storedValues === null ? 0 : storedValues[1])
     }, [])
 
-
-    const handleClickEnglish = (item: fromTo, id: number) => {
-        localStorage.setItem('sliceValues', JSON.stringify([item, id, category]))
-        setArray(wordArray.slice(item.from, item.to))
-
-        setSelected(id)
-        setTimeout(() => {
-            setShowFilter(false)
-        }, 500);
-    }
-
-    const handleClickAws = (item: string | undefined, id: number) => {
-        localStorage.setItem('sliceValues', JSON.stringify([item, id, category]))
-
-        setArray(awsQuestions.filter(el => el.tag === item))
-
-
-        setSelected(id)
-        setTimeout(() => {
-            setShowFilter(false)
-        }, 500);
-    }
 
     const tagAws = [... new Set(awsQuestions.map(item => item.tag))]
 
@@ -92,43 +78,32 @@ function Filter({ setArray, setShowFilter, showFilter }: FilterProps) {
                 </div>
 
                 {category === 'english' && (
-
-                    <div className='english'>
-                        {filters.map((item, id) => (
-                            <Fragment key={`${item.to}-${id}`}>
-                                <input
-                                    type="radio"
-                                    id={`eng-${id}`}
-                                    name="english-filter"
-                                    checked={selected === id}
-                                    onChange={() => handleClickEnglish(item, id)}
-                                />
-                                <label htmlFor={`eng-${id}`}>{`${item.to} - ${item.from}`}</label>
-                            </Fragment>
-                        ))}
-                    </div>
-
+                    <GenericFilter 
+                    array={filters}
+                    selected={selected}
+                    onClick={(item, id) =>
+                        handleClickGeneric(item, id, "english", setArray, setSelected, setShowFilter)
+                    }
+                    name="english-filter"
+                    idPrefix="eng"
+                    getLabel={(item) => `${item.to} - ${item.from}`}
+                    getKey={(item, id) => `${item.to}-${id}`}/>
                 )}
 
                 {category === 'aws' && (
-                    <div className='aws'>
-                        {tagAws.map((item, id) => {
-                            return (
-                                <Fragment key={item ? item + id : id}>
-                                    <input
-                                    type="radio"
-                                        id={`aws-${id}`}
-                                        name="aws-filter"
-                                    checked={selected === id}
-                                        onChange={() => handleClickAws(item, id)}
-                                    />
-                                    <label htmlFor={`aws-${id}`} title={item}>{item}</label>
-                                </Fragment>
-                            )
-                        })}
-                    </div>
-
+                    <GenericFilter
+                    array={tagAws}
+                    selected={selected}
+                    onClick={(item, id) =>
+                        handleClickGeneric(item, id, "aws", setArray, setSelected, setShowFilter)
+                    }
+                    name="aws-filter"
+                    idPrefix="aws"
+                    getLabel={(item) => item ?? ''}
+                    getKey={(item, id) => `${item}-${id}`}
+                />
                 )}
+
             </div>
         </div>
 
